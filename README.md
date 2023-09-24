@@ -9,3 +9,5 @@
 На телефоне,приложение pydroid3
 #Что за команды? 
 2-3 команды тестовые лол
+# Компиляция в exe
+pyinstaller --onefile DiscordBot
