@@ -37,7 +37,7 @@ async def gen(ctx):
 		kones = b[b1] + str(num) + b[b2] + b[b3] + str(num2)
 		print(kones) #вывод и комбинирование букв и цифр номера
 		wrt = kones + '\n'
-		f = open('/storage/emulated/0/documents/Pydroid3/num.txt', 'a')
+		f = open('num.txt', 'a')
 		f.write(wrt)
 		f.close #сохранение в текстовик
 		#sleep(0.2) #задержка
