@@ -93,4 +93,4 @@ async def time(ctx):
 async def lol(ctx):
 	await ctx.send(f'sus')
 	await ctx.send(file=discord.File("photo.png"))
-bot.run('MTExMzM5NDgwNDg2OTU3MDU3MA.GXsLQG.Wlr_MIpvkqb6OChTLPRdjNLGd-6q5O1u4O6XHo')
+bot.run('TOKEN')
