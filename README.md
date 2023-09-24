@@ -10,4 +10,4 @@
 #Что за команды? 
 2-3 команды тестовые лол
 # Компиляция в exe
-pyinstaller --onefile DiscordBot
+pyinstaller --onefile DiscordBot.py
