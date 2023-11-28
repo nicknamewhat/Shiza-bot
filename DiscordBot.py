@@ -7,7 +7,7 @@ import calendar
 import time
 from time import sleep
 import asyncio
-intents = discord.Intents.default() # Подключаем "Разрешения"
+intents = discord.Intents.default() # Подключаем
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 # С помощью декоратора создаём первую команду
