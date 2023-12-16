@@ -7,7 +7,7 @@ import calendar
 import time
 from time import sleep
 import asyncio
-intents = discord.Intents.default() # Подключаем
+intents = discord.Intents.default() # Подключаем "Разрешения"
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 # С помощью декоратора создаём первую команду
@@ -25,16 +25,6 @@ async def gen(ctx):
 		num2 = randint(10, 99) #генерация букв и цифр для номера
 		kones = b[b1] + str(num) + b[b2] + b[b3] + str(num2)
 		await ctx.send(kones)
-@bot.command()
-async def ghoul(ctx):
-	await ctx.send('Внимание возможен бан бота за спам')
-	sleep(1)
-	x = 1000
-	for i in range(143):
-		x2 = 7 
-		x3 = x - x2
-		x = x3
-		await ctx.send(x3)
 @bot.command()
 async def send(ctx, *, text):
             			await ctx.send(f'{text}')
@@ -63,7 +53,6 @@ async def хелп(ctx):
 	await ctx.send('Мои команды')
 	await ctx.send('!gen')
 	await ctx.send('!send')
-	await ctx.send('!ghoul')
 	await ctx.send('!ball')
 	await ctx.send('!time')
 @bot.command()
@@ -78,4 +67,13 @@ async def on_ready():
 	sleep(5)
 	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
 	sleep(5)
-bot.run('TOKEN')
+@bot.event
+async def on_message(message):
+	mesau = (f'{message.author}')
+	btu = (f'{bot.user}')
+	if mesau == btu:
+		return
+	else:
+		channel = bot.get_channel(1185505560095899689)
+		await channel.send(f'Сообщение от {message.author}:{message.content}')
+bot.run('MTExMzM5NDgwNDg2OTU3MDU3MA.GO67DD.eczp0HpDa0RvEQJP_RDD3v-475UoBAgCIEmpv4')
