@@ -6,7 +6,7 @@ import string
 import calendar
 import time
 from time import sleep
-import asyncio
+import typing
 intents = discord.Intents.default() # Подключаем "Разрешения"
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -50,30 +50,27 @@ async def ball(ctx, *, text):
     		await ctx.send(f'{text} \n Спроси позже')
 @bot.command()
 async def хелп(ctx):
-	await ctx.send('Мои команды')
-	await ctx.send('!gen')
-	await ctx.send('!send')
-	await ctx.send('!ball')
-	await ctx.send('!time')
+	await ctx.send('Мои команды \n !dm \n !join \n !leave \n !ball \n !gen \n !send \n !time \n !faq')
 @bot.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
     await channel.connect()
-    message = await ctx.send('done')
+    message = await ctx.send('Бот зашел в войс канал!')
     await message.add_reaction('<:emoji_1:1171105938250408017>')
+@bot.command()
+async def dm(ctx, member: discord.Member, *, message):
+	await member.send(message)
+@bot.command()
+async def leave(ctx):
+	await ctx.guild.voice_client.disconnect() 
+	await ctx.channel.send('Бот вышел')
+@bot.command()
+async def faq(ctx):
+	await ctx.send('Помощь по командам: \n !send <аргумент> \n !ball <аргумент>')
 @bot.event
 async def on_ready():
 	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="!хелп"))
 	sleep(5)
 	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
 	sleep(5)
-@bot.event
-async def on_message(message):
-	mesau = (f'{message.author}')
-	btu = (f'{bot.user}')
-	if mesau == btu:
-		return
-	else:
-		channel = bot.get_channel(1185505560095899689)
-		await channel.send(f'Сообщение от {message.author}:{message.content}')
-bot.run('MTExMzM5NDgwNDg2OTU3MDU3MA.GO67DD.eczp0HpDa0RvEQJP_RDD3v-475UoBAgCIEmpv4')
+bot.run('TOKEN HERE') #токен хере
