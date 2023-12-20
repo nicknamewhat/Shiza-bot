@@ -7,12 +7,10 @@ import calendar
 import time
 from time import sleep
 import typing
-intents = discord.Intents.default() # Подключаем "Разрешения"
+intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
-# С помощью декоратора создаём первую команду
 resultt =time.localtime()
-#ротик офф
 @bot.command()
 async def gen(ctx):
 	b = ['А', 'Б', 'В', 'Г', 'У', 'Х', 'Н', 'К', 'Л']
@@ -22,7 +20,7 @@ async def gen(ctx):
 		b2 = randint(0, 8)
 		b3 = randint(0, 8)
 		num = randint(100, 999)
-		num2 = randint(10, 99) #генерация букв и цифр для номера
+		num2 = randint(10, 99)
 		kones = b[b1] + str(num) + b[b2] + b[b3] + str(num2)
 		await ctx.send(kones)
 @bot.command()
@@ -36,7 +34,7 @@ async def time(ctx):
 	mday = (resultt.tm_mday)
 	clac = (calendar.month(yy, mm))
 	await ctx.send(clac)
-	await ctx.send("Сейчас: " + str(mday) + " Число") #ТАДЖИК БААЧАА
+	await ctx.send("Сейчас: " + str(mday) + " Число")
 @bot.command()
 async def ball(ctx, *, text):
     ballr = randint(1,3)
@@ -73,4 +71,4 @@ async def on_ready():
 	sleep(5)
 	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
 	sleep(5)
-bot.run('TOKEN HERE') #токен хере
+bot.run('MTExMzM5NDgwNDg2OTU3MDU3MA.GO67DD.eczp0HpDa0RvEQJP_RDD3v-475UoBAgCIEmpv4')
