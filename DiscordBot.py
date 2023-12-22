@@ -7,6 +7,9 @@ import calendar
 import time
 from time import sleep
 import typing
+from gtts import gTTS
+import os
+import sys
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
@@ -65,6 +68,11 @@ async def leave(ctx):
 @bot.command()
 async def faq(ctx):
 	await ctx.send('Помощь по командам: \n !send <аргумент> \n !ball <аргумент>')
+@bot.command()
+async def tts(ctx, *, tmss):
+	tts = gTTS(text=tmss)
+	tts.save("tts.mp3")
+	await ctx.send(file=discord.File("tts.mp3"))
 @bot.event
 async def on_ready():
 	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="!хелп"))
