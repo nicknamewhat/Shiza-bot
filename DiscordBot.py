@@ -79,4 +79,4 @@ async def on_ready():
 	sleep(5)
 	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
 	sleep(5)
-bot.run('MTExMzM5NDgwNDg2OTU3MDU3MA.GO67DD.eczp0HpDa0RvEQJP_RDD3v-475UoBAgCIEmpv4')
+bot.run('TOKEN')
