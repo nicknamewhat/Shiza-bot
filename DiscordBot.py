@@ -51,7 +51,7 @@ async def ball(ctx, *, text):
     		await ctx.send(f'{text} \n Спроси позже')
 @bot.command()
 async def хелп(ctx):
-	await ctx.send('Мои команды \n !dm \n !join \n !leave \n !ball \n !gen \n !send \n !time \n !faq')
+	await ctx.send('Мои команды \n !dm \n !join \n !leave \n !ball \n !gen \n !send \n !time \n !faq \n !tts')
 @bot.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
@@ -67,7 +67,7 @@ async def leave(ctx):
 	await ctx.channel.send('Бот вышел')
 @bot.command()
 async def faq(ctx):
-	await ctx.send('Помощь по командам: \n !send <аргумент> \n !ball <аргумент>')
+	await ctx.send('Помощь по командам: \n !send <аргумент> \n !ball <аргумент> \n !tts <аргумент>')
 @bot.command()
 async def tts(ctx, *, tmss):
 	tts = gTTS(text=tmss)
@@ -79,4 +79,5 @@ async def on_ready():
 	sleep(5)
 	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
 	sleep(5)
-bot.run('TOKEN')
+    
+bot.run('' )
