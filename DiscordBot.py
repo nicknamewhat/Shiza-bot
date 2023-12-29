@@ -14,6 +14,9 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 resultt =time.localtime()
+f = open('token.txt', 'r')
+token = f.read()
+# подгрузка библиотек и токена из файла
 @bot.command()
 async def gen(ctx):
 	b = ['А', 'Б', 'В', 'Г', 'У', 'Х', 'Н', 'К', 'Л']
@@ -73,11 +76,19 @@ async def tts(ctx, *, tmss):
 	tts = gTTS(text=tmss)
 	tts.save("tts.mp3")
 	await ctx.send(file=discord.File("tts.mp3"))
+@bot.command()
+async def roulete(ctx):
+	rouleterandom = randint(1, 2)
+	rouleterandom1 = randint(1, 2)
+	if rouleterandom == rouleterandom1:
+		await ctx.send('Вы остались живы.')
+	else:
+		await ctx.send('Пистолет выстрелил.')
 @bot.event
 async def on_ready():
 	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="!хелп"))
 	sleep(5)
 	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
 	sleep(5)
-    
-bot.run('' )
+	
+bot.run(token)
