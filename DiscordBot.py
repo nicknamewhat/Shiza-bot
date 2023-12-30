@@ -14,6 +14,7 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 resultt =time.localtime()
+delet = 'false'
 f = open('token.txt', 'r')
 token = f.read()
 # подгрузка библиотек и токена из файла
@@ -31,8 +32,8 @@ async def gen(ctx):
 		await ctx.send(kones)
 @bot.command()
 async def send(ctx, *, text):
-            			await ctx.send(f'{text}')
-            			await ctx.message.delete()
+	await ctx.send(f'{text}')
+	await ctx.message.delete()
 @bot.command()
 async def time(ctx):
 	yy = (resultt.tm_year)
@@ -53,8 +54,8 @@ async def ball(ctx, *, text):
     	else:
     		await ctx.send(f'{text} \n Спроси позже')
 @bot.command()
-async def хелп(ctx):
-	await ctx.send('Мои команды \n !dm \n !join \n !leave \n !ball \n !gen \n !send \n !time \n !faq \n !tts')
+async def commands(ctx):
+	await ctx.send('Мои команды \n !dm \n !join \n !leave \n !ball \n !gen \n !send \n !time \n !faq \n !tts \n !roulete')
 @bot.command()
 async def join(ctx):
     channel = ctx.author.voice.channel
@@ -84,11 +85,29 @@ async def roulete(ctx):
 		await ctx.send('Вы остались живы.')
 	else:
 		await ctx.send('Пистолет выстрелил.')
+@bot.command()
+async def create(ctx, *, name):
+	if delet == 'true':
+		guild = bot.get_guild(1179026950971461692)
+		category = discord.utils.get(guild.categories, name = "voice")
+		create = await guild.create_voice_channel(name, category=category)
+	else:
+		await ctx.send('Функция отключена/не доступна вам')
+@bot.command()
+async def delete(ctx, *, name):
+	if delet == 'true':
+		channel_name = name
+		channel = discord.utils.get(ctx.guild.channels, name=channel_name)
+
+		if channel:
+			await channel.delete()
+	else:
+		await ctx.send('Функция отключена/не доступна вам')
 @bot.event
 async def on_ready():
-	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="!хелп"))
+	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="!commands"))
 	sleep(5)
-	await bot.change_presence(activity=discord.Game(name="это тестовый бот"))
+	await bot.change_presence(activity=discord.Game(name="!faq"))
 	sleep(5)
 	
 bot.run(token)
