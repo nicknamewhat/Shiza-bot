@@ -14,10 +14,10 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix='!', intents=intents)
 resultt =time.localtime()
-delet = 'false'
-f = open('token.txt', 'r')
-token = f.read()
-# подгрузка библиотек и токена из файла
+with open('config.txt', 'r') as file:
+    configlin = file.readlines()
+token = (configlin[0])
+delet = (configlin[1])
 @bot.command()
 async def gen(ctx):
 	b = ['А', 'Б', 'В', 'Г', 'У', 'Х', 'Н', 'К', 'Л']
@@ -44,24 +44,24 @@ async def time(ctx):
 	await ctx.send("Сейчас: " + str(mday) + " Число")
 @bot.command()
 async def ball(ctx, *, text):
-    ballr = randint(1,3)
-    balt = (f'{ctx.message.author.mention} задал вопрос **{text}** , ответ')
-    if ballr == 1:
-    	await ctx.send(balt  + f'\n Да')
-    else:
-    	if ballr == 2:
-    		await ctx.send(f'{text} \n  Нет')
-    	else:
-    		await ctx.send(f'{text} \n Спроси позже')
+	ballr = randint(1,3)
+	balt = (f'{ctx.message.author.mention} задал вопрос **{text}** , ответ')
+	if ballr == 1:
+		await ctx.send(balt  + f'\n Да')
+	else:
+		if ballr == 2:
+			await ctx.send(balt  + f'\n Нет')
+		else:
+			await ctx.send(balt  + f'\n Спроси меня позже')
 @bot.command()
 async def commands(ctx):
 	await ctx.send('Мои команды \n !dm \n !join \n !leave \n !ball \n !gen \n !send \n !time \n !faq \n !tts \n !roulete')
 @bot.command()
 async def join(ctx):
-    channel = ctx.author.voice.channel
-    await channel.connect()
-    message = await ctx.send('Бот зашел в войс канал!')
-    await message.add_reaction('<:emoji_1:1171105938250408017>')
+	channel = ctx.author.voice.channel
+	await channel.connect()
+	message = await ctx.send('Бот зашел в войс канал!')
+	await message.add_reaction('<:emoji_1:1171105938250408017>')
 @bot.command()
 async def dm(ctx, member: discord.Member, *, message):
 	await member.send(message)
