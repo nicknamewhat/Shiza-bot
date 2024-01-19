@@ -18,6 +18,9 @@ with open('config.txt', 'r') as file:
     configlin = file.readlines()
 token = (configlin[0])
 delet = (configlin[1])
+tickets = []
+ticketsnum = []
+print (tickets)
 @bot.command()
 async def gen(ctx):
 	b = ['А', 'Б', 'В', 'Г', 'У', 'Х', 'Н', 'К', 'Л']
@@ -88,7 +91,7 @@ async def roulete(ctx):
 @bot.command()
 async def create(ctx, *, name):
 	if delet == 'true':
-		guild = bot.get_guild(1179026950971461692)
+		guild = bot.get_guild(1179026950971461692) #меняем на ID своего сервера
 		category = discord.utils.get(guild.categories, name = "voice")
 		create = await guild.create_voice_channel(name, category=category)
 	else:
@@ -103,6 +106,25 @@ async def delete(ctx, *, name):
 			await channel.delete()
 	else:
 		await ctx.send('Функция отключена/не доступна вам')
+@bot.command()
+async def ticket(ctx, reason):
+	guild = bot.get_guild(1179026950971461692) #меняем на ID своего сервера
+	category = discord.utils.get(guild.categories, name = "ticket")
+	id = ctx.author.id
+	author = bot.get_user(id)
+	ticketnamenum = randint(1,100)
+	if int(ticketnamenum) == ticketsnum:
+		ticketnamenumshi = int(ticketnamenum) - 1
+		ticketnamenum = str(ticketnamenumshi)
+		ticketsnum.append(ticketnamenum)
+		ticketname = ('Тикет №' + str(ticketnamenum))
+		create = await guild.create_text_channel(ticketname, category=category)
+		await ctx.send(f'Тикет создан! <@{id}>')
+	else:
+		ticketsnum.append(ticketnamenum)
+		ticketname = ('Тикет №' + str(ticketnamenum))
+		create = await guild.create_text_channel(ticketname, category=category)
+		await ctx.send(f'Тикет создан! <@{id}>')
 @bot.event
 async def on_ready():
 	await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name="!commands"))
